@@ -1,55 +1,71 @@
 /** selection collectivite vue. Path :"src/views/SelectionCollectivite.vue" */
 <template>
-    <div class="page-container">
-      <div class="form-container">
-        <form @submit.prevent="submitForm">
-          <div class="form-group">
-            <div class="dark-banner">
-              <label for="publicStructureId"><h1>Identifiant structure publique</h1></label>
-              <input type="text" id="publicStructureId" v-model="publicStructureId" required placeholder="Veuillez renseigner l'identifiant structure publique ici">
-              <div class="form-actions">
-              <button type="submit">Valider</button>
-              <button type="button" @click="cancel">Annuler</button>
-            </div>
-            </div>
+  <div class="page-container">
+    <div class="banner-container">
+      <form @submit.prevent="submitForm">
+        <div class="form-group">
+          <div class="dark-banner">
+            <label for="publicStructureId"><h1>{{ translate('publicStructureIdentifier') }}</h1></label>
+            <input type="text" id="publicStructureId" v-model="publicStructureId" required :placeholder="translate('publicStructureIdPlaceholder')" class="focus-animation">
+            <div class="form-actions-validate-cancel-form"> 
+            <button class="validate-button" type="submit">{{ translate('validate') }}</button>
+            <button class="cancel-button" type="button" @click="cancel">{{ translate('cancel') }}</button>
           </div>
-        </form>
-      </div>
-      <p>* Saisir l'identifiant structure publique précisé sur votre avis des sommes à payer, votre facture ou votre titre de perception.</p>
+          </div>
+        </div>
+      </form>
     </div>
+    <div class="text-explication">
+    <p>{{ translate('instruction') }}</p>
+  </div>
+  </div>
 </template>
 
-  
-  <script>
-  export default {
-    data() {
-      return {
-        publicStructureId: '',
-      };
-    },
-    methods: {
+<script>
+import { defineComponent, computed } from 'vue';
+import { useLanguageStore } from '@/stores/languageStore';
+import { translations } from '@/traduction/SelectionCollectiviteTraduction.ts';
+
+export default defineComponent({
+  name: 'SelectionCollectivite',
+  setup() {
+    const languageStore = useLanguageStore();
+    const translate = key => translations[languageStore.currentLanguage][key];
+
+    // Validation personalisé pour traduire le message d'erreur en anglais si la page est en anglais
+    const setCustomValidityMessage = () => {
+      const input = document.getElementById("publicStructureId");
+      if (input) {
+        input.oninvalid = function(event) {
+          event.target.setCustomValidity(translate('requiredFieldError'));
+        };
+        input.oninput = function(event) {
+          event.target.setCustomValidity('');
+        };
+      }
+    };
+
+    return {
+      translate,
+      publicStructureId: '',
       submitForm() {
         console.log("Formulaire soumis avec l'identifiant:", this.publicStructureId);
-        // Redirection après la soumission du formulaire, si nécessaire
+        this.$router.push({ name: 'SelectionFacture' });
       },
       cancel() {
-        this.$router.go(-1); // Retour à la vue précédente
+        this.$router.go(-1);
       },
-    },
-  };
-  </script>
-  
-<style scoped>
-.page-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: auto; /* Ajuste la hauteur en fonction du contenu */
-  padding: 1vh;
-}
+      setCustomValidityMessage,
+    };
+  },
+  mounted() {
+    this.setCustomValidityMessage();
+  },
+});
 
+</script>
+
+<style scoped>
 h1 {
   font-family: 'Poppins', sans-serif; /* Utilisation de Poppins pour une cohérence avec le reste du design */
   color: var(--vt-c-white); /* Texte blanc pour le titre pour contraster avec le fond sombre */
@@ -68,33 +84,6 @@ p {
     margin-bottom: 5vh;
 }
 
-.dark-banner {
-  background-color: rgb(0, 0, 0, 0.7); /* Noir avec 50% d'opacité */
-  padding: 3vh;
-  border-radius: 10px; /* Bordures arrondies pour adoucir les coins */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Ombre légère pour un effet de profondeur */
-  margin: 20px 0; /* Ajoute de l'espace autour du bandeau */
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centre les éléments à l'intérieur verticalement */
-  justify-content: center; /* Centre les éléments à l'intérieur horizontalement */
-}
-
-.form-container {
-  background-image: url('@/assets/d13.webp'); /* Chemin à ajuster si nécessaire */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre discrète pour le relief */
-  background-color: #ffffff; /* Fond blanc pour le contraste et la clarté */
-  width: 100%;
-  max-width: 80%;
-  padding: 5vh;
-  position: relative;
-  overflow: hidden;
-}
-
 .form-group label {
   color: #333; /* Couleur de texte sobre */
   display: block;
@@ -108,34 +97,5 @@ p {
   border: 1px solid #ccc; /* Bordure discrète pour les champs de saisie */
   border-radius: 4px; /* Légères bordures arrondies pour les champs de saisie */
   background-color: #fafafa; /* Fond légèrement gris pour les champs de saisie */
-}
-
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 5vh;
-}
-
-.form-actions button {
-  background-color: #4d3808; /* Couleur verte sobre pour le bouton Valider */
-  color: white; /* Texte blanc pour contraste */
-  border: none;
-  padding: 10px 20px;
-  margin-left: 10px; /* Espacement entre les boutons */
-  border-radius: 4px; /* Bordures arrondies pour les boutons */
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.form-actions button:hover {
-  background-color: #45a049; /* Assombrissement au survol */
-}
-
-.form-actions button[type="button"] {
-  background-color: #0e2743; /* Couleur rouge sobre pour le bouton Annuler */
-}
-
-.form-actions button[type="button"]:hover {
-  background-color: #d32f2f; /* Assombrissement au survol */
 }
 </style>

@@ -1,0 +1,40 @@
+.form-containerV2 {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7); /* Fond noir transparent */
+  border-radius: 10px;
+  color: white; /* Texte blanc pour contraster avec le fond sombre */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre douce pour un effet de profondeur */
+  text-align: center; /* Centrage du texte */
+  font-family: 'Poppins', sans-serif; /* Police moderne */
+}
+
+.form-groupV2 label, .form-groupV2 input, select {
+  display: block; /* Assure que les éléments s'affichent en bloc */
+  margin: auto; /* Centre les éléments */
+  width: 90%; /* Ajuster la largeur si nécessaire */
+  text-align: left; /* Aligner le texte des labels et inputs à gauche */
+  font-size: 1.5rem; 
+}
+
+input, select, button {
+  width: 100%; /* Pleine largeur */
+  padding: 10px;
+  margin: 10px 0; /* Espacement */
+  border-radius: 5px; /* Bords arrondis */
+  border: 1px solid #ccc; /* Bordure subtile */
+  background-color: #f9f9f9; /* Fond clair pour les champs de saisie */
+  color: #333; /* Texte foncé pour contraste */
+}
+
+button {
+  background-color: #7fdbda; /* Bleu doux pour les boutons */
+  color: white; /* Texte du bouton en blanc */
+  font-weight: bold;
+  transition: background-color 0.3s; /* Transition douce au survol */
+}
+
+button:hover {
+  background-color: #a2d5f2; /* Bleu ciel clair au survol */
+}

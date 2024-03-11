@@ -1,0 +1,97 @@
+            /* Téléphones mobiles */
+
+/* Très petits écrans de téléphones (moins de 320px) */
+@media only screen and (max-width: 319px) {
+  .text-explication, .form-group label, .form-group input, .validate-button, .cancel-button {
+    font-size: 3vw; /* Ajuster la taille du texte */
+    padding: 2vw; /* Ajuster le padding */
+  }
+}
+
+
+/* Petits téléphones (320px et plus) */
+@media only screen and (min-width: 320px) and (max-width: 359px) {
+  .text-explication, .form-group label, .form-group input, .validate-button, .cancel-button {
+    font-size: 3.5vw;
+    padding: 2.5vw;
+  }
+}
+
+
+
+/* Téléphones moyens (360px à 374px) */
+@media only screen and (min-width: 360px) and (max-width: 374px) {
+  .text-explication, .form-group label, .form-group input, .validate-button, .cancel-button {
+    font-size: 3.7vw;
+    padding: 2.7vw;
+  }
+}
+
+/* Téléphones moyens/grands (375px à 399px) */
+@media only screen and (min-width: 375px) and (max-width: 399px) {
+    .text-explication{
+        background-color: yellow;
+      }
+}
+
+/* Téléphones grands (400px à 424px) */
+@media only screen and (min-width: 400px) and (max-width: 424px) {
+    .text-explication{
+        background-color: green;
+      }
+}
+
+/* Téléphones très grands (425px à 479px) */
+@media only screen and (min-width: 425px) and (max-width: 479px) {
+    .text-explication{
+        background-color: orange;
+      }
+}
+
+
+            /* Tablettes et Téléphones en orientation paysage */
+
+/* Téléphones en paysage / Petites tablettes (480px à 767px) */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .text-explication{
+        background-color: black;
+      }
+}
+
+/* Tablettes moyennes (768px à 1023px) */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .text-explication{
+        background-color: brown;
+      }
+}
+
+
+
+            /* Ordinateurs portables et de bureau */
+
+/* Petits écrans d'ordinateur portable / Tablettes en paysage (1024px à 1279px) */
+@media only screen and (min-width: 1024px) and (max-width: 1279px) {
+    .text-explication{
+        background-color: grey;
+      }
+}
+
+/* Écrans moyens d'ordinateur portable (1280px à 1439px) */
+@media only screen and (min-width: 1280px) and (max-width: 1439px) {
+    .text-explication{
+        background-color: pink;
+      }
+}
+
+/* Grands écrans (1440px à 1919px) */
+@media only screen and (min-width: 1440px) and (max-width: 1919px) {
+    .text-explication{
+        background-color: red;
+      }
+}
+
+/* Très grands écrans (1920px et plus) */
+@media only screen and (min-width: 1920px) {
+    .text-explication{
+      }
+}

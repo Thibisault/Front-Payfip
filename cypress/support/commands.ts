@@ -34,6 +34,13 @@
 //       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
 //     }
 //   }
-// }
+// }    
 
-export {}
+export {
+
+
+}
+Cypress.Commands.add("submitCollectiviteForm", (publicStructureId) => {
+    cy.get('input[id="publicStructureId"]').clear().type(publicStructureId);
+    cy.get('button').contains('Valider').click();
+  });
